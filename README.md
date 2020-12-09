@@ -1,14 +1,19 @@
 # vuetify-poster
 
 ### props 
-- :item="item",
-- :src="item.url",
-- width="168",
-- ratio="2/3", 
-- spinner: 'red',
-- iconSize="23",
-- zIndex="1",
+- :item="item"
+- :src="item.url"
+- width="168"
+- ratio="2/3" 
+- spinner: 'red'
+- iconSize="23"
+- zIndex="1"
 
+### slots
+- tr (top-right)
+- body (middle)
+- br (bottom-right)
+- bl (bottom-left)
 
 ### poster.vue
 ```vue
