@@ -1,5 +1,15 @@
 # vuetify-poster
 
+### props 
+- :item="item",
+- :src="item.url",
+- width="168",
+- ratio="2/3", 
+- spinner: 'red',
+- iconSize="23",
+- zIndex="1",
+
+
 ### poster.vue
 ```vue
 <template>
@@ -124,54 +134,50 @@ export default {
     </v-app-bar>
     <v-col cols="12">
       <v-row justify="space-around">
-    <poster
-      ref="posters"
-      v-for="item of items"
-      :key="item.id"
-      :item="item"
-      src="http://image.tmdb.org/t/p/original/6YPzBcMH0aPNTvdXNCDLY0zdE1g.jpg"
-      width="180"
-      :title="item.name"
-      :date="item.date"
-      @select="select"
-      @deselect="deselect"
-      iconSize="30"
-      spinner="blue"
-    >
-      <template v-slot:body>
-        <v-col cols="12" class="text-center" align-self="center">
-            <v-icon v-if="!hoverPlay" @mouseover="hoverPlay = true" @mouseleave="hoverPlay = false" size="60">mdi-play-circle-outline</v-icon>
-            <v-icon v-if="hoverPlay" @mouseover="hoverPlay = true" @mouseleave="hoverPlay = false"  size="60">mdi-play-circle</v-icon>
-        </v-col>
-      </template>
+        <poster
+          ref="posters"
+          v-for="item of items"
+          :key="item.id"
+          :item="item"
+          src="http://image.tmdb.org/t/p/original/6YPzBcMH0aPNTvdXNCDLY0zdE1g.jpg"
+          width="180"
+          :title="item.name"
+          :date="item.date"
+          @select="select"
+          @deselect="deselect"
+          iconSize="23"
+          spinner="blue"
+        >
+          <template v-slot:tr="{prop: {iconsize, load}}">
+            <v-icon :size="iconsize" @click="load(add,{item})">
+                mdi-plus
+            </v-icon>
+          </template>
 
-      <template v-slot:bl>
-        <v-icon>
-            mdi-checkbox-blank-circle
-        </v-icon>
-      </template>
+          <template v-slot:body>
+            <v-col cols="12" class="text-center" align-self="center">
+                <v-icon v-if="!hoverPlay" @mouseover="hoverPlay = true" @mouseleave="hoverPlay = false" size="60">mdi-play-circle-outline</v-icon>
+                <v-icon v-if="hoverPlay" @mouseover="hoverPlay = true" @mouseleave="hoverPlay = false"  size="60">mdi-play-circle</v-icon>
+            </v-col>
+          </template>
 
-      <template v-slot:br>
-        <v-icon>
-            mdi-checkbox-marked-circle
-        </v-icon>
-      </template>
+          <template v-slot:bl="{prop: {iconsize}}">
+            <v-icon :size="iconsize">mdi-pencil</v-icon>
+          </template>
 
-      <template v-slot:tr="{prop: {iconsize, load}}">
-        <v-icon :size="iconsize" @click="load(add,{item})">
-            mdi-plus
-        </v-icon>
-      </template>
-      <template v-slot:footer>
-          <v-tooltip top>
-              <template v-slot:activator="{ on, attrs }">
-                  <div v-on="on" v-bind="attrs" class="font-weight-medium text-truncate">{{item.name}}</div>
-              </template>
-              <span>{{item.name}}</span>
-          </v-tooltip>
-          <div class="blue-grey--text">{{year(item.date)}}</div>
-      </template>
-    </poster>
+          <template v-slot:br="{prop: {iconsize}}">
+            <v-icon :size="iconsize">mdi-dots-vertical</v-icon>
+          </template>
+          <template v-slot:footer>
+              <v-tooltip top>
+                  <template v-slot:activator="{ on, attrs }">
+                      <div v-on="on" v-bind="attrs" class="font-weight-medium text-truncate">{{item.name}}</div>
+                  </template>
+                  <span>{{item.name}}</span>
+              </v-tooltip>
+              <div class="blue-grey--text">{{year(item.date)}}</div>
+          </template>
+        </poster>
       </v-row>
     </v-col>
   </div>
