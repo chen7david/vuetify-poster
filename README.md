@@ -15,6 +15,17 @@
 - br (bottom-right)
 - bl (bottom-left)
 
+### poster functions
+function | args | description
+--- | --- | --- | 
+load | func, params | activates the isLoading atttribute on the poster object
+show | - | shows poster
+hide | - | hides poster
+create new show | POST | /shows
+
+### Loader Functions
+Loader functions activate the load spinner on the poster object in question. To use the load funciton you munst first set a ref on the poster object that is being itterated. To better follow the examples below you might want to set ref="posters". Now you will have access to the load function in your methods though <code>this.$refs.posters.map(p => p.hide())</code>
+
 ### poster.vue
 ```vue
 <template>
