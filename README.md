@@ -132,10 +132,10 @@ export default {
   <div class="home">
     <v-app-bar fixed dense v-if="showToolbar">
       <v-btn text tile @click="selectAll">select all</v-btn>
-    <v-btn text tile @click="deselectAll">deselect all</v-btn>
-    <v-btn text tile @click="hideAll">hide</v-btn>
-    <v-btn text tile @click="showAll">show</v-btn>
-    <v-btn text tile @click="addAll">run all</v-btn>
+      <v-btn text tile @click="deselectAll">deselect all</v-btn>
+      <v-btn text tile @click="hideAll">hide</v-btn>
+      <v-btn text tile @click="showAll">show</v-btn>
+      <v-btn text tile @click="addAll">run all</v-btn>
     </v-app-bar>
     <v-col cols="12">
       <v-row justify="space-around">
